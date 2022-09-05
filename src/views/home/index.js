@@ -182,7 +182,7 @@ const Home = () => {
           <>
             <Button
               onClick={getSelloChainedCO2Data}
-              mt={12}
+              mt={30}
               size="md"
               colorScheme="green"
             >

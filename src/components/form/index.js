@@ -1,7 +1,6 @@
 import {
     FormControl,
     FormLabel,
-    FormErrorMessage,
     FormHelperText,
     Input,
     Select,
@@ -11,13 +10,13 @@ import {
     NumberInput,
     NumberInputField,
     Grid,
-    GridItem
-  } from '@chakra-ui/react'
+    Button,
+  } from '@chakra-ui/react';
 
 const Form = () => {
     return (
         <form>
-            <Grid h='400px' gap={5}>
+            <Grid h='500px' gap={5}>
             <FormControl>
             <RadioGroup defaultValue='Empresa'>
                 <HStack spacing='24px'>
@@ -55,6 +54,10 @@ const Form = () => {
             <Input type='email' />
             <FormHelperText>Nunca compartiremos tu información.</FormHelperText>
             </FormControl>
+
+
+            <Button colorScheme='blue'>⊕ Agregar un archivo</Button>
+
 
             </Grid>
         </form>
