@@ -20,7 +20,7 @@ const Links = [
     to: "/",
   },
   {
-    name: "Galeria",
+    name: "Galería",
     to: "/galeria",
   },
 ];
@@ -58,7 +58,7 @@ const MainLayout = ({ children }) => {
           />
           <HStack spacing={8} alignItems={"center"}>
             <Flex alignItems="center">
-              <Image src="./images/logo.svg" width="80px" />
+              <Image src="./images/logo-png.png" width="80px" />
               <Heading size="md" color="green" mt={0.2} ml={1}>
                 Sello Chained CO2
               </Heading>
