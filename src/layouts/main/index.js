@@ -20,7 +20,7 @@ const Links = [
     to: "/",
   },
   {
-    name: "Galeria",
+    name: "Galería",
     to: "/galeria",
   },
 ];

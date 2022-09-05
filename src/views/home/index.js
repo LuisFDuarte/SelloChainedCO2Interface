@@ -111,7 +111,7 @@ const Home = () => {
          con qué porcentaje de energía renovable funciona una empresa o usuario.
         </Text>
         <Text color={"green.500"}>
-          Cada Sello Chained CO2 se genera de  basado en tu consumo energética,
+          Cada Sello Chained CO2 se genera de  basado en tu consumo energético,
           utiliza el formulario para previsualizar tu NFT y huella de carbono.
         </Text>
         <Stack
@@ -190,7 +190,7 @@ const Home = () => {
             </Button>
           </>
         ) : (
-          <Badge mt={12}>Wallet desconectado</Badge>
+          <Badge mt={12}>Wallet desconectada</Badge>
         )}
       </Flex>
     </Stack>

@@ -35,7 +35,7 @@ const Form = () => {
 
             <FormControl isRequired>
             <FormLabel>País</FormLabel>
-            <Select>
+            <Select placeholder='Selecciona tu país'>
                 <option>Argentina</option>
                 <option>Bolivia</option>
                 <option>Chile</option>
