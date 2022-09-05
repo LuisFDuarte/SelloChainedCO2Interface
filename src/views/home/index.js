@@ -12,6 +12,9 @@ import { Link } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import useSelloChainedCO2 from "../../hooks/useSelloChainedCO2";
 import { useCallback, useEffect, useState } from "react";
+import useTruncatedAddress from "../../hooks/useTruncatedAddress";
+import Form from "../../components/form";
+
 
 const Home = () => {
   const [isMinting, setIsMinting] = useState(false);
@@ -19,6 +22,7 @@ const Home = () => {
   const { active, account } = useWeb3React();
   const SelloChainedCO2 = useSelloChainedCO2();
   const toast = useToast();
+  const truncatedAddress = useTruncatedAddress(account);
   
   const getSelloChainedCO2Data = useCallback(async () => {
     if (SelloChainedCO2) {
@@ -108,8 +112,7 @@ const Home = () => {
         </Text>
         <Text color={"green.500"}>
           Cada Sello Chained CO2 se genera de  basado en tu consumo energética,
-          usa el previsualizador para averiguar cuál sería tu NFT y huella de carbono si haces
-          mint.
+          utiliza el formulario para previsualizar tu NFT y huella de carbono.
         </Text>
         <Stack
           spacing={{ base: 4, sm: 6 }}
@@ -144,8 +147,7 @@ const Home = () => {
         position={"relative"}
         w={"full"}
       >
-        <Image src={active ? imageSrc : "https://avataaars.io/"} /> 
-        {/* TODO Se debe cambiar la imagen por defecto */}
+        <Image src={active ? imageSrc : "./images/logo-png.png"}/> 
         {active ? (
           <>
             <Flex mt={2}>
@@ -158,21 +160,37 @@ const Home = () => {
               <Badge ml={2}>
                 Address:
                 <Badge ml={1} colorScheme="green">
-                  0x0000...0000
+                  {truncatedAddress}
                 </Badge>
               </Badge>
             </Flex>
+          </>
+        ) : (
+          <></>
+        )}
+      </Flex>
+      <Flex
+        flex={1}
+        direction="column"
+        justify={"center"}
+        align={"top"}
+        position={"relative"}
+        w={"full"}
+      >
+        <Form/>
+        {active ? (
+          <>
             <Button
               onClick={getSelloChainedCO2Data}
-              mt={4}
-              size="xs"
+              mt={12}
+              size="md"
               colorScheme="green"
             >
-              Actualizar
+              Previsualizar
             </Button>
           </>
         ) : (
-          <Badge mt={2}>Wallet desconectado</Badge>
+          <Badge mt={12}>Wallet desconectado</Badge>
         )}
       </Flex>
     </Stack>
