@@ -18,8 +18,8 @@ import Card from "../../components/card";
 
 const Home = () => {
   const [isMinting, setIsMinting] = useState(false);
-  const [imageSrc, setImageSrc] = useState("");
-  const { active, account } = useWeb3React();
+  const [tokenURI, setTokenURI] = useState("");
+  const { account } = useWeb3React();
   const { setIsAdmin } = useContext(AppContext);
   const selloChainedCO2 = useSelloChainedCO2();
   const toast = useToast();
@@ -36,9 +36,18 @@ const Home = () => {
   }, [getAccess]);
 
   const mint = () => {
+    if(!tokenURI){
+      toast({
+        title: "Diligencia el formulario",
+        description: "Debes llenar los campos y presionar en previsualizar",
+        status: "info",
+      });
+      
+      return
+    }
     setIsMinting(true);
     selloChainedCO2.methods
-      .mint()
+      .mint(tokenURI)
       .send({
         from: account,
       })
@@ -68,30 +77,35 @@ const Home = () => {
   };
 
   const getSelloChainedCO2Data = async (data) => {
-    console.log({data})
+   
     const BASE_URL = "https://api-co2.herokuapp.com";
-    const response = await axios.get(`${BASE_URL}/${data.country}?energy=${data.energy}`);
-    console.log({response});
+    const URL = `${BASE_URL}/${data.country}?energy=${data.energy}`
+    const response = await axios.get(URL);
+    setTokenURI(URL)
+   
     setNFTdata({
       "name": response.data.name,
       "description": response.data.description,
-      "image": response.data.image
+      "image": response.data.image,
+      "share": response.data.attributes[0].value,
+      "emissions": response.data.attributes[3].value
     })
+   
     //btoa(JSON.stringify(obj))
   }
 
   return (
     <Stack
       align={"center"}
-      spacing={{ base: 6, md: 8 }}
-      py={{ base: 18, md: 26 }}
+      spacing={{ base: 5, md: 4 }}
+      py={{ base: 10, md: 2 }}
       direction={{ base: "column-reverse", md: "row" }}
     >
-      <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+      <Stack flex={1} spacing={{ base: 5, md: 4 }}>
         <Heading
           lineHeight={1.0}
           fontWeight={600}
-          fontSize={{ base: "2xl", sm: "3xl", lg: "5xl" }}
+          fontSize={{ base: "1xl", sm: "2xl", lg: "4xl" }}
         >
           <Text
             as={"span"}
@@ -141,7 +155,7 @@ const Home = () => {
           >
             Obtén tu NFT Sello Chained CO2
           </Button>
-          <Link to="/galeria">
+          <Link to={`/galeria?address=${account}`}>
             <Button rounded={"full"} size={"lg"} fontWeight={"normal"} px={6}>
               Galería
             </Button>
@@ -157,7 +171,7 @@ const Home = () => {
         position={"relative"}
         w={"full"}
       >
-        <Image src={ (active && imageSrc) ? imageSrc : "./images/logo-png.png"}/> 
+        <Image src={  "./images/logo-png.png"}/> 
       </Flex>
       }
       { NFTdata.name &&
@@ -169,7 +183,11 @@ const Home = () => {
         position={"relative"}
         w={"full"}
       >
-      <Card name={NFTdata.name} image={ NFTdata.image} description={NFTdata.description} />{/*  name={name} }  */}
+      <Card name={NFTdata.name } 
+            image={ NFTdata.image } 
+            description={ NFTdata.description } 
+            share={ NFTdata.share } 
+            emissions={ NFTdata.emissions } />
       </Flex>
       }
       <Flex
