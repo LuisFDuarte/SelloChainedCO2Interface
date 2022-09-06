@@ -4,10 +4,10 @@ import useSelloChainedCO2 from "../useSelloChainedCO2";
 // TODO refactorizar o rehacer este hook
 const getData = async ({SelloChainedCO2,tokenId}) =>{
   let tokenURI = await SelloChainedCO2.methods.tokenURI(tokenId).call();
-  console.log({tokenURI});
+  
   const response = await fetch(tokenURI);
   const metadata = await response.json();
-  console.log({metadata});
+  
   return{tokenId, ...metadata} 
 }
 
@@ -31,13 +31,13 @@ const useNFTsData = ({ owner = null } = {}) => {
           SelloChainedCO2.methods.ownerToToken(owner).call()
         );
       tokenIds = await Promise.all(tokenIdsOfOwner);
-      console.log({tokenIds})
+    
       const metadataPromise = tokenIds.map((tokenId) =>
         getData({ tokenId, SelloChainedCO2 })
       );
       const NFT = await Promise.all(metadataPromise);
       setNFTs(NFT);
-      console.log({NFT})
+      
       setLoading(false);
       }
     }

@@ -32,7 +32,7 @@ const Gallery = () => {
   const { NFTs, loading } = useNFTsData({
     owner: submitted && validAddress ? address : null,
   });
-  console.log({NFTs})
+
   const handleAddressChange = ({ target: { value } }) => {
     setAddress(value);
     setValidAddress(false);
@@ -41,7 +41,7 @@ const Gallery = () => {
 
   const submit = (event) => {
     //event.preventDefault();
-    console.log(address)
+   
     if (address) {
       const isValid = library.utils.isAddress(address);
       setValidAddress(isValid);
@@ -84,7 +84,7 @@ const Gallery = () => {
       {loading ? (
         <Loading />
       ) : (
-        <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={6}>
+        <Grid templateColumns="repeat(auto-fill, minmax(232px, 1fr))" gap={6}>
           {NFTs.map(({ name, image, description, attributes, tokenId }) => (
               <Card name={name} 
                     key={tokenId} 

@@ -77,7 +77,7 @@ const MainLayout = ({ children }) => {
           />
           <HStack spacing={8} alignItems={"center"}>
             <Flex alignItems="center">
-              <Image src="./images/logo-png.png" width="80px" />
+              <Image src="./SelloChainedCO2Interface/images/logo-png.png" width="80px" />
               <Heading size="md" color="green" mt={0.2} ml={1}>
                 Sello Chained CO2
               </Heading>
@@ -118,4 +118,4 @@ const MainLayout = ({ children }) => {
 };
 
 export default MainLayout;
->>>>>>> 2d315cba78bda14219b409be871438c27327cef9
+

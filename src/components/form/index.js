@@ -27,7 +27,7 @@ const Form = ({ onSubmit }) => {
 
   const handleFileUpload = (e) =>{
     //TODO
-    console.log(e.target.files[0]);
+    
     axios.post('https://api-co2.herokuapp.com/uploadFile/', {
       user: 'Usuario',
       in_file: e.target.files[0]
