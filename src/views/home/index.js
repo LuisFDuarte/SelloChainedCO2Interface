@@ -42,7 +42,7 @@ const Home = () => {
         description: "Debes llenar los campos y presionar en previsualizar",
         status: "info",
       });
-      
+      console.log(tokenURI)
       return
     }
     setIsMinting(true);
@@ -82,7 +82,7 @@ const Home = () => {
     const URL = `${BASE_URL}/${data.country}?energy=${data.energy}`
     const response = await axios.get(URL);
     setTokenURI(URL)
-    
+    console.log({response});
     setNFTdata({
       "name": response.data.name,
       "description": response.data.description,
@@ -90,7 +90,7 @@ const Home = () => {
       "share": response.data.attributes[0].value,
       "emissions": response.data.attributes[3].value
     })
-   
+    console.log(NFTdata)
     //btoa(JSON.stringify(obj))
   }
 
@@ -186,8 +186,8 @@ const Home = () => {
       <Card name={NFTdata.name } 
             image={ NFTdata.image } 
             description={ NFTdata.description } 
-            share={NFTdata.share} 
-            emissions={ NFTdata.emissions} />
+            share={ NFTdata.share } 
+            emissions={ NFTdata.emissions } />
       </Flex>
       }
       <Flex

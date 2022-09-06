@@ -13,10 +13,9 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
-import axios from "axios";
+
 const Form = ({ onSubmit }) => {
     const formRef = useRef(null);
-    const FileRef = useRef(null);
     const [errors, setErrors] = useState({
         type: false,
         name: false,
@@ -24,25 +23,6 @@ const Form = ({ onSubmit }) => {
         energy: false,
         email: false
     })
-
-  const handleFileUpload = (e) =>{
-    //TODO
-   
-    axios.post('https://api-co2.herokuapp.com/uploadFile/', {
-      user: 'Usuario',
-      in_file: e.target.files[0]
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  
-  }
-  const handleClick = event => {
-    FileRef.current.click();
-  };
 
   const submitForm = (e) => {
     e.preventDefault()

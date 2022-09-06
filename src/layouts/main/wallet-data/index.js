@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   Flex,
   Button,
@@ -52,7 +53,7 @@ const WalletData = () => {
       {active ? (
         <Tag colorScheme="green" borderRadius="full">
           <TagLabel>
-            <Link to={`/galeria?address=${account}`}>{truncatedAddress}</Link>
+            <Link to="/galeria">{truncatedAddress}</Link>
           </TagLabel>
           <Badge
             d={{
@@ -84,3 +85,4 @@ const WalletData = () => {
 };
 
 export default WalletData;
+>>>>>>> 2d315cba78bda14219b409be871438c27327cef9
