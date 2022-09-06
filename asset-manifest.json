@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/SelloChainedCO2Interface/static/js/main.60ce03eb.js",
+    "main.js": "/SelloChainedCO2Interface/static/js/main.6050ef64.js",
     "index.html": "/SelloChainedCO2Interface/index.html",
-    "main.60ce03eb.js.map": "/SelloChainedCO2Interface/static/js/main.60ce03eb.js.map"
+    "main.6050ef64.js.map": "/SelloChainedCO2Interface/static/js/main.6050ef64.js.map"
   },
   "entrypoints": [
-    "static/js/main.60ce03eb.js"
+    "static/js/main.6050ef64.js"
   ]
 }
