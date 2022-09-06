@@ -1,6 +1,6 @@
 const SelloChainedCO2Artifact= {
   "contractName": "SelloChainedCO2",
-  "sourceName": "contracts/PlatziPunks.sol",
+  "sourceName": "contracts/SelloChainedCO2.sol",
   "address": {
     4: "0xBCb40e7A0C3D65d2d1f2d539ca04e42222D99b6C"
   },

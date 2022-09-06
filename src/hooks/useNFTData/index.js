@@ -2,6 +2,17 @@ import { useWeb3React } from "@web3-react/core";
 import { useCallback, useEffect, useState } from "react";
 import useSelloChainedCO2 from "../useSelloChainedCO2";
 // TODO refactorizar o rehacer este hook
+const getData = async ({platziPunks,tokenId}) =>{
+  let tokenURI = await platziPunks.methods.tokenURI(tokenId).call();
+  console.log({tokenURI});
+  //tokenURI = 'http://localhost:8000/BO?energy=200'
+  const response = await fetch(tokenURI);
+  const metadata = await response.json();
+  
+  console.log({metadata});
+  return{tokenId, ...metadata}
+  
+}
 const getPunkData = async ({ platziPunks, tokenId }) => {
   const [
     accessoriesType,
@@ -39,6 +50,7 @@ const getPunkData = async ({ platziPunks, tokenId }) => {
     platziPunks.methods.ownerOf(tokenId).call(),
   ]);
   const response = await fetch(tokenURI);
+  
   const metadata = await response.json();
 
   return {
@@ -75,30 +87,39 @@ const useNFTsData = ({ owner = null } = {}) => {
       setLoading(true);
 
       let tokenIds;
-
-      if (!library.utils.isAddress(owner)) {
-        const totalSupply = await platziPunks.methods.totalSupply().call();
-        tokenIds = new Array(Number(totalSupply))
-          .fill()
-          .map((_, index) => index);
-      } else {
-        const balanceOf = await platziPunks.methods.balanceOf(owner).call();
-        const tokenIdsOfOwner = new Array(Number(balanceOf))
-          .fill()
-          .map((_, index) =>
-            platziPunks.methods.tokenOfOwnerByIndex(owner, index).call()
-          );
-        tokenIds = await Promise.all(tokenIdsOfOwner);
-      }
-
-      const punksPromise = tokenIds.map((tokenId) =>
-        getPunkData({ tokenId, platziPunks })
+      console.log('Tiene NFTs: '+(library.utils.isAddress(owner)))
+      if (library.utils.isAddress(owner)) {
+      const balanceOf = await platziPunks.methods.balanceOf(owner).call();
+      const tokenIdsOfOwner = new Array(Number(balanceOf))
+        .fill()
+        .map((_, index) =>
+          platziPunks.methods.ownerToToken(owner).call()
+        );
+      tokenIds = await Promise.all(tokenIdsOfOwner);
+      console.log({tokenIds})
+      const metadataPromise = tokenIds.map((tokenId) =>
+      //getPunkData({ tokenId, platziPunks })
+        getData({ tokenId, platziPunks })
       );
-
-      const punks = await Promise.all(punksPromise);
-
+      const punks = await Promise.all(metadataPromise);
       setPunks(punks);
       setLoading(false);
+      
+      // if (!library.utils.isAddress(owner)) {
+      //   const totalSupply = await platziPunks.methods.totalSupply().call();
+      //   tokenIds = new Array(Number(totalSupply))
+      //     .fill()
+      //     .map((_, index) => index);
+      // } else {
+      //   const balanceOf = await platziPunks.methods.balanceOf(owner).call();
+      //   const tokenIdsOfOwner = new Array(Number(balanceOf))
+      //     .fill()
+      //     .map((_, index) =>
+      //       platziPunks.methods.tokenOfOwnerByIndex(owner, index).call()
+      //     );
+      //   tokenIds = await Promise.all(tokenIdsOfOwner);
+      // }
+      }
     }
   }, [platziPunks, owner, library?.utils]);
 

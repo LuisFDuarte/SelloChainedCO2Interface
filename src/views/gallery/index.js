@@ -83,9 +83,9 @@ const Gallery = () => {
         <Loading />
       ) : (
         <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={6}>
-          {punks.map(({ name, image, tokenId }) => (
+          {punks.map(({ name, image,description, tokenId }) => (
             // <Link  to={`/galeria/${tokenId}`}>
-              <Card name={name} key={tokenId} image={image} />
+              <Card name={name} key={tokenId} image={image} description={description} />
             // </Link>
           ))}
         </Grid>

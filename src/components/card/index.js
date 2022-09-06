@@ -2,11 +2,12 @@ import {
     Box,
     useColorModeValue,
     Heading,
+    Text,
     Stack,
     Image,
   } from "@chakra-ui/react";
   
-  const Card = ({ image, name, ...props }) => {
+  const Card = ({ image, name,description, ...props }) => {
     return (
       <Box
         role={"group"}
@@ -54,6 +55,7 @@ import {
           <Heading fontSize={"xl"} fontFamily={"body"} fontWeight={500}>
             {name}
           </Heading>
+          <Text>{description}</Text>
         </Stack>
       </Box>
     );

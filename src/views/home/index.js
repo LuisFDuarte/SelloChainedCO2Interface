@@ -14,7 +14,7 @@ import useSelloChainedCO2 from "../../hooks/useSelloChainedCO2";
 import { useCallback, useEffect, useState, useContext } from "react";
 import Form from "../../components/form";
 import AppContext from "../../context/AppContext";
-
+import Card from "../../components/card";
 
 const Home = () => {
   const [isMinting, setIsMinting] = useState(false);
@@ -23,7 +23,7 @@ const Home = () => {
   const { setIsAdmin } = useContext(AppContext);
   const selloChainedCO2 = useSelloChainedCO2();
   const toast = useToast();
-  
+  const [NFTdata, setNFTdata] = useState({})
   const getAccess = useCallback(async () => {
     if (selloChainedCO2) {
       const admin = await selloChainedCO2.methods.isReviewer().call({from: account});
@@ -68,9 +68,15 @@ const Home = () => {
   };
 
   const getSelloChainedCO2Data = async (data) => {
+    console.log({data})
     const BASE_URL = "https://api-co2.herokuapp.com";
     const response = await axios.get(`${BASE_URL}/${data.country}?energy=${data.energy}`);
-    console.log(response);
+    console.log({response});
+    setNFTdata({
+      "name": response.data.name,
+      "description": response.data.description,
+      "image": response.data.image
+    })
     //btoa(JSON.stringify(obj))
   }
 
@@ -142,7 +148,8 @@ const Home = () => {
           </Link>
         </Stack>
       </Stack>
-      <Flex
+      { !NFTdata.name &&
+      <Flex 
         flex={1}
         direction="column"
         justify={"center"}
@@ -152,6 +159,19 @@ const Home = () => {
       >
         <Image src={ (active && imageSrc) ? imageSrc : "./images/logo-png.png"}/> 
       </Flex>
+      }
+      { NFTdata.name &&
+      <Flex
+        flex={1}
+        direction="column"
+        justify={"center"}
+        align={"center"}
+        position={"relative"}
+        w={"full"}
+      >
+      <Card name={NFTdata.name} image={ NFTdata.image} description={NFTdata.description} />{/*  name={name} }  */}
+      </Flex>
+      }
       <Flex
         flex={1}
         direction="column"
