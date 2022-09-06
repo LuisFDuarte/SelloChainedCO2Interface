@@ -5,12 +5,9 @@ import {
     Text,
     Stack,
     Image,
-    CircularProgressLabel,
-    CircularProgress,
-    Badge
   } from "@chakra-ui/react";
   
-  const Card = ({ image, name,description,share,emissions, ...props }) => {
+  const Card = ({ image, name,description, ...props }) => {
     return (
       <Box
         role={"group"}
@@ -54,18 +51,11 @@ import {
             src={image}
           />
         </Box>
-        <Stack pt={4} align={"center"}>
-          <Heading fontSize={"ml"} fontFamily={"body"} fontWeight={500}>
+        <Stack pt={10} align={"center"}>
+          <Heading fontSize={"xl"} fontFamily={"body"} fontWeight={500}>
             {name}
           </Heading>
           <Text>{description}</Text>
-        </Stack>
-        <Stack pt={4} align={"center"}>
-          <Badge colorScheme='green'>Energía renovable [%]</Badge>
-          <CircularProgress value={share} color='green.400'>
-            <CircularProgressLabel>{share}</CircularProgressLabel>
-          </CircularProgress>
-          <Badge colorScheme='gray'>Emisiones: {emissions} [kgCO2]</Badge>
         </Stack>
       </Box>
     );

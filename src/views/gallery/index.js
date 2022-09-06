@@ -23,16 +23,15 @@ const Gallery = () => {
   const { push } = useNavigate();
   const [validAddress, setValidAddress] = useState(true);
   const [submitted, setSubmitted] = useState(true);
-
   const [address, setAddress] = useState(
     new URLSearchParams(search).get("address")
   );
 
   const { active, library } = useWeb3React();
-  const { NFTs, loading } = useNFTsData({
+  const { punks, loading } = useNFTsData({
     owner: submitted && validAddress ? address : null,
   });
-  console.log({NFTs})
+  
   const handleAddressChange = ({ target: { value } }) => {
     setAddress(value);
     setValidAddress(false);
@@ -40,8 +39,7 @@ const Gallery = () => {
   };
 
   const submit = (event) => {
-    //event.preventDefault();
-    console.log(address)
+    event.preventDefault();
     if (address) {
       const isValid = library.utils.isAddress(address);
       setValidAddress(isValid);
@@ -85,13 +83,10 @@ const Gallery = () => {
         <Loading />
       ) : (
         <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={6}>
-          {NFTs.map(({ name, image, description, attributes, tokenId }) => (
-              <Card name={name} 
-                    key={tokenId} 
-                    image={image} 
-                    description={description} 
-                    share={attributes[0].value}
-                    emissions = {attributes[3].value} />
+          {punks.map(({ name, image,description, tokenId }) => (
+            // <Link  to={`/galeria/${tokenId}`}>
+              <Card name={name} key={tokenId} image={image} description={description} />
+            // </Link>
           ))}
         </Grid>
       )}
