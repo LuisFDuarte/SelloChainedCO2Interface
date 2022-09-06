@@ -113,11 +113,11 @@ const Form = ({ onSubmit }) => {
           onChange={handleFileUpload}
           style={{ display: "none" }}
         />
-        <FormControl isRequired>
-          <Button colorScheme="blue" onClick={handleClick}>
-            ⊕ Agregar un archivo
-          </Button>
-        </FormControl>
+       
+        <Button colorScheme="blue" onClick={handleClick}>
+          ⊕ Agregar un archivo
+        </Button>
+       
         <Button onClick={submitForm} colorScheme="green">
           Previsualizar
         </Button>
