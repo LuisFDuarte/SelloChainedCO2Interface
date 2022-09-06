@@ -10,13 +10,14 @@ import { AddIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import { connector } from "../../../config/web3";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useContext } from "react";
 import useTruncatedAddress from "../../../hooks/useTruncatedAddress/index.js";
+import AppContext from "../../../context/AppContext";
 
 const WalletData = () => {
   const [balance, setBalance] = useState(0);
-  const { active, activate, deactivate, account, error, library } =
-    useWeb3React();
+  const { active, activate, deactivate, account, error, library } = useWeb3React();
+  const { setIsAdmin } = useContext(AppContext);
 
   const isUnsupportedChain = error instanceof UnsupportedChainIdError;
 
@@ -26,6 +27,7 @@ const WalletData = () => {
   }, [activate]);
 
   const disconnect = () => {
+    setIsAdmin(false);
     deactivate();
     localStorage.removeItem("previouslyConnected");
   };

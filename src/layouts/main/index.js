@@ -13,6 +13,8 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import NavLink from "./nav-link";
 import Footer from "./footer";
 import WalletData from "./wallet-data";
+import { useContext } from "react";
+import AppContext from "../../context/AppContext";
 
 const Links = [
   {
@@ -27,6 +29,17 @@ const Links = [
 
 const MainLayout = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isAdmin } = useContext(AppContext);
+  let customLinks = Links;
+  if (isAdmin) {
+    customLinks = [
+      ...Links,
+      {
+        name: "Verify",
+        to: "/verify",
+      }
+    ]
+  }
 
   return (
     <Flex minH="100vh" direction="column">
@@ -68,7 +81,7 @@ const MainLayout = ({ children }) => {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              {Links.map(({ name, to }) => (
+              {customLinks.map(({ name, to }) => (
                 <NavLink key={name} to={to}>
                   {name}
                 </NavLink>
@@ -81,7 +94,7 @@ const MainLayout = ({ children }) => {
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {Links.map(({ name, to }) => (
+              {customLinks.map(({ name, to }) => (
                 <NavLink key={name} to={to}>
                   {name}
                 </NavLink>
