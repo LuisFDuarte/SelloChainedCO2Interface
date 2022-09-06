@@ -171,7 +171,8 @@ const Home = () => {
         position={"relative"}
         w={"full"}
       >
-        <Image src={  "./SelloChainedCO2Interface/images/logo-png.png"}/> 
+        <Image src={  "./images/logo-png.png"}/> 
+        {/* <Image src={  "./SelloChainedCO2Interface/images/logo-png.png"}/>  en local */}
       </Flex>
       }
       { NFTdata.name &&
