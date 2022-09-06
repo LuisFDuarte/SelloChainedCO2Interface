@@ -1,18 +1,16 @@
 # Sello ChainedCO2 Interface
+Sello Chained CO2 es una plataforma que permite obtener NFTs dinámicos que muestran la huella de carbono actual de un producto o servicio según su consumo de energía eléctrica. Estos NFTs sirven como un sello que muestra con qué porcentaje de energía renovable funciona una empresa o usuario.
 # Instalación
-se puede usar npm install o yarn
+npm install o yarn install
 # Uso
-se pueden usar los comandos yarn start o npm run start
-# Tareas
-Buscar TODOs en el proyecto (uso esta etiqueta para cosas futuras por hacer), por ahora no tenemos el contrato actualizado asi que pues se puede ir trabajando con el contrato de platzi punks mientras obtenemos el ABI y se depliega el contrato de nuestro NFT.
+yarn start o npm run start
+# Contrato
+0xBCb40e7A0C3D65d2d1f2d539ca04e42222D99b6C (Rinkeby)
+https://rinkeby.etherscan.io/address/0xBCb40e7A0C3D65d2d1f2d539ca04e42222D99b6C
 
-- Falta diseñar un formulario para obtener la información necesaria del usuario tales como:
+La previsualización del NFT depende de los siguientes elementos:
 * consumo de electricidad mensual
 * pais de origen
-* nombre usuario
-* otras que consideren
-
-Falta agregar tests
 
 ## Dependencias
 - yarn add web3
