@@ -5,43 +5,39 @@ import {
   Text,
   Button,
   Image,
-  Badge,
   useToast,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import useSelloChainedCO2 from "../../hooks/useSelloChainedCO2";
-import { useCallback, useEffect, useState } from "react";
-import useTruncatedAddress from "../../hooks/useTruncatedAddress";
+import { useCallback, useEffect, useState, useContext } from "react";
 import Form from "../../components/form";
+import AppContext from "../../context/AppContext";
 
 
 const Home = () => {
   const [isMinting, setIsMinting] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
   const { active, account } = useWeb3React();
-  const SelloChainedCO2 = useSelloChainedCO2();
+  const { setIsAdmin } = useContext(AppContext);
+  const selloChainedCO2 = useSelloChainedCO2();
   const toast = useToast();
-  const truncatedAddress = useTruncatedAddress(account);
   
-  const getSelloChainedCO2Data = useCallback(async () => {
-    if (SelloChainedCO2) {
-      const totalSupply = await SelloChainedCO2.methods.totalSupply().call();
-      const dnaPreview = await SelloChainedCO2.methods
-        .deterministicPseudoRandomDNA(totalSupply, account)
-        .call();
-      const image = await SelloChainedCO2.methods.imageByDNA(dnaPreview).call();
-      setImageSrc(image);
+  const getAccess = useCallback(async () => {
+    if (selloChainedCO2) {
+      const admin = await selloChainedCO2.methods.isReviewer().call({from: account});
+      setIsAdmin(admin)
     }
-  }, [SelloChainedCO2, account]);
+  }, [selloChainedCO2, setIsAdmin, account]);
 
   useEffect(() => {
-    getSelloChainedCO2Data();
-  }, [getSelloChainedCO2Data]);
+    getAccess();
+  }, [getAccess]);
 
   const mint = () => {
     setIsMinting(true);
-    SelloChainedCO2.methods
+    selloChainedCO2.methods
       .mint()
       .send({
         from: account,
@@ -70,6 +66,13 @@ const Home = () => {
         });
       });
   };
+
+  const getSelloChainedCO2Data = async (data) => {
+    const BASE_URL = "https://api-co2.herokuapp.com";
+    const response = await axios.get(`${BASE_URL}/${data.country}?energy=${data.energy}`);
+    console.log(response);
+    //btoa(JSON.stringify(obj))
+  }
 
   return (
     <Stack
@@ -126,7 +129,7 @@ const Home = () => {
             colorScheme={"green"}
             bg={"green.400"}
             _hover={{ bg: "green.500" }}
-            disabled={!SelloChainedCO2}
+            disabled={!selloChainedCO2}
             onClick={mint}
             isLoading={isMinting}
           >
@@ -147,27 +150,7 @@ const Home = () => {
         position={"relative"}
         w={"full"}
       >
-        <Image src={active ? imageSrc : "./images/logo-png.png"}/> 
-        {active ? (
-          <>
-            <Flex mt={2}>
-              <Badge>
-                Next ID:
-                <Badge ml={1} colorScheme="green">
-                  1
-                </Badge>
-              </Badge>
-              <Badge ml={2}>
-                Address:
-                <Badge ml={1} colorScheme="green">
-                  {truncatedAddress}
-                </Badge>
-              </Badge>
-            </Flex>
-          </>
-        ) : (
-          <></>
-        )}
+        <Image src={ (active && imageSrc) ? imageSrc : "./images/logo-png.png"}/> 
       </Flex>
       <Flex
         flex={1}
@@ -177,21 +160,7 @@ const Home = () => {
         position={"relative"}
         w={"full"}
       >
-        <Form/>
-        {active ? (
-          <>
-            <Button
-              onClick={getSelloChainedCO2Data}
-              mt={30}
-              size="md"
-              colorScheme="green"
-            >
-              Previsualizar
-            </Button>
-          </>
-        ) : (
-          <Badge mt={12}>Wallet desconectada</Badge>
-        )}
+        <Form onSubmit={(data) => getSelloChainedCO2Data(data)}/>
       </Flex>
     </Stack>
   );

@@ -13,7 +13,7 @@ import { useNFTsData } from "../../hooks/useNFTData";
 import RequestAccess from "../../components/request-access";
 import Loading from "../../components/loading";
 import Card from "../../components/card";
-import { Link, useLocation,useNavigate } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 
