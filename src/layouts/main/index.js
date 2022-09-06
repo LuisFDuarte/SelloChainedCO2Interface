@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {
   Box,
   Flex,
@@ -16,22 +15,28 @@ import Footer from "./footer";
 import WalletData from "./wallet-data";
 import { useContext } from "react";
 import AppContext from "../../context/AppContext";
+import { useWeb3React } from "@web3-react/core";
 
 const Links = [
   {
     name: "Home",
     to: "/",
   },
-  {
-    name: "Galería",
-    to: "/galeria",
-  },
+
 ];
 
 const MainLayout = ({ children }) => {
+  const { account } = useWeb3React();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isAdmin } = useContext(AppContext);
   let customLinks = Links;
+  customLinks = [
+    ...Links,
+    {
+      name: "Galería",
+      to:  `/galeria?address=${account}`,
+    }
+  ]
   if (isAdmin) {
     customLinks = [
       ...Links,
@@ -55,7 +60,7 @@ const MainLayout = ({ children }) => {
           bg={useColorModeValue("white", "gray.800")}
           color={useColorModeValue("gray.600", "white")}
           minH={"60px"}
-          py={{ base: 2 }}
+          py={{ base: 1 }}
           px={{ base: 4 }}
           borderBottom={1}
           borderStyle={"solid"}
@@ -113,3 +118,4 @@ const MainLayout = ({ children }) => {
 };
 
 export default MainLayout;
+>>>>>>> 2d315cba78bda14219b409be871438c27327cef9

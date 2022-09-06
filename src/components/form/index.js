@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {
   FormControl,
   FormLabel,
@@ -129,4 +128,3 @@ const Form = ({ onSubmit }) => {
 };
 
 export default Form;
->>>>>>> 25edcf35b91a513cf5a918dcf1cca224270e9821

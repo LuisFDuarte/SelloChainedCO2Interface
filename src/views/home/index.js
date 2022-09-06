@@ -42,7 +42,7 @@ const Home = () => {
         description: "Debes llenar los campos y presionar en previsualizar",
         status: "info",
       });
-      
+      console.log(tokenURI)
       return
     }
     setIsMinting(true);
@@ -77,12 +77,12 @@ const Home = () => {
   };
 
   const getSelloChainedCO2Data = async (data) => {
-   
+    console.log({data})
     const BASE_URL = "https://api-co2.herokuapp.com";
     const URL = `${BASE_URL}/${data.country}?energy=${data.energy}`
     const response = await axios.get(URL);
     setTokenURI(URL)
-   
+    console.log({response});
     setNFTdata({
       "name": response.data.name,
       "description": response.data.description,
@@ -90,7 +90,7 @@ const Home = () => {
       "share": response.data.attributes[0].value,
       "emissions": response.data.attributes[3].value
     })
-   
+    console.log(NFTdata)
     //btoa(JSON.stringify(obj))
   }
 
