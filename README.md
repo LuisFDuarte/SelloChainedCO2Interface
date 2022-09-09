@@ -22,14 +22,20 @@ yarn install
 ``` bash
 yarn start
 ```
+
+La previsualización del NFT depende de los siguientes elementos:
+* Consumo de electricidad mensual
+* País de origen
+
 ### Contrato (rinkeby)
 ``` bash
 0xBCb40e7A0C3D65d2d1f2d539ca04e42222D99b6C 
 ```
 
-La previsualización del NFT depende de los siguientes elementos:
-* consumo de electricidad mensual
-* pais de origen
+## API y Smart Contract
+- https://github.com/LuisFDuarte/SelloChainedCO2API
+- https://github.com/LuisFDuarte/SelloChainedCO2
+
 
 ### Dependencias
 - yarn add web3
