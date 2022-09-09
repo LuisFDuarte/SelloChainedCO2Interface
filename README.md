@@ -1,5 +1,6 @@
 # Sello ChainedCO2 Interface
 Sello Chained CO2 es una plataforma que permite obtener NFTs dinámicos que muestran la huella de carbono actual de un producto o servicio según su consumo de energía eléctrica. Estos NFTs sirven como un sello que muestra con qué porcentaje de energía renovable funciona una empresa o usuario.
+
 **Página web**:
 https://luisfduarte.github.io/SelloChainedCO2Interface/
 
