@@ -1,7 +1,7 @@
 # Sello ChainedCO2 Interface
 Sello Chained CO2 es una plataforma que permite obtener NFTs dinámicos que muestran la huella de carbono actual de un producto o servicio según su consumo de energía eléctrica. Estos NFTs sirven como un sello que muestra con qué porcentaje de energía renovable funciona una empresa o usuario.
-
-Este proyecto esta basado en el reto de [NFTs Dinámicos de Camilo Molano](https://github.com/camohe90).
+**Página web**:
+https://luisfduarte.github.io/SelloChainedCO2Interface/
 
 **Autores**:
 
@@ -10,6 +10,8 @@ Este proyecto esta basado en el reto de [NFTs Dinámicos de Camilo Molano](https
 * Mario Sanchez (mszjar)
 
 * Jhoer Perez (jho3r)
+
+Este proyecto esta basado en el reto de [NFTs Dinámicos de Camilo Molano](https://github.com/camohe90).
 
 ### Instalación
 ``` bash
