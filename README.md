@@ -4,7 +4,9 @@ Sello Chained CO2 es una plataforma que permite obtener NFTs dinámicos que mues
 **Página web**:
 https://luisfduarte.github.io/SelloChainedCO2Interface/
 
-**Autores**:
+Este proyecto esta basado en el reto de [NFTs Dinámicos de Camilo Molano](https://github.com/camohe90). NFTs generados usando  IA [stable difussion](https://github.com/CompVis/stable-diffusion) e inspirado por la interfaz del proyecto [Platzi Punks de Ernesto García](https://github.com/ernestognw)
+
+### Autores
 
 * Luis Duarte (LuisFDuarte)
 
@@ -12,11 +14,9 @@ https://luisfduarte.github.io/SelloChainedCO2Interface/
 
 * Jhoer Perez (jho3r)
 
-Este proyecto esta basado en el reto de [NFTs Dinámicos de Camilo Molano](https://github.com/camohe90).
-
 ### Instalación
 ``` bash
-yarn install
+yarn
 ```
 ### Uso
 ``` bash
