@@ -89,9 +89,19 @@ const Form = ({ onSubmit }) => {
           <FormLabel>País</FormLabel>
           <Select placeholder="Selecciona tu país" name="country">
             <option value={"AR"}>Argentina</option>
+            <option value={"AR"}>Aruba</option>
             <option value={"BO"}>Bolivia</option>
             <option value={"CL"}>Chile</option>
+            <option value={"CR"}>Costa Rica</option>
+            <option value={"DO"}>República Dominicana</option>
             <option value={"FR"}>Francia</option>
+            <option value={"GT"}>Guatemala</option>
+            <option value={"HN"}>Honduras</option>
+            <option value={"IS"}>Islandia</option>
+            <option value={"NI"}>Nicaragua</option>
+            <option value={"PE"}>Perú</option>
+            <option value={"SV"}>El Salvador</option>
+            <option value={"UY"}>Uruguay</option>
           </Select>
         </FormControl>
 

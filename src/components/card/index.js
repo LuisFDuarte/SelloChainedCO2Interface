@@ -64,7 +64,7 @@ import {
           <CircularProgress value={share} color='green.400'>
             <CircularProgressLabel>{share}</CircularProgressLabel>
           </CircularProgress>
-          <Badge>Emisiones [kgCO2]:{emissions}</Badge>
+          <Badge>Emisiones [gCO2]:{emissions}</Badge>
         </Stack>
       </Box>
     );
